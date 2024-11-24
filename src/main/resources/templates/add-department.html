@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Department</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eaf4fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #eaf4fc, #ffffff);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #004085;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #004085;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .home-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Insert Department</h1>
+        <form th:action="@{/addDepartment}" th:object="${departmentDto}" method="post">
+           
+            <label for="departmentId">Department ID</label>
+            <input type="text" id="departmentId" name="departmentId" th:value="${department['departmentId']}" placeholder="Enter Department ID" required>
+
+			
+            <label for="name">Department Name</label>
+            <input type="text" id="name" name="name" th:value="${department['name']}" placeholder="Enter Department Name" required>
+
+
+
+            <button type="submit">Submit</button>
+        </form>
+          <!-- Insert Department Button -->
+<a th:href="@{/latest}" class="insert-btn">Latest Departments</a>
+        
+       
+        <a href="/getAll" class="home-link">Back to Departments List</a>
+    </div>
+</body>
+</html>

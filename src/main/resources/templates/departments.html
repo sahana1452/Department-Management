@@ -1,0 +1,295 @@
+<!-- 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Department</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #eaf4fc; 
+            background-image: url('https://www.istockphoto.com/en/photo/cropped-shot-of-a-female-nurse-hold-her-senior-patients-hand-giving-support-doctor-gm1437830105-478509804');
+           display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #eaf4fc, #ffffff);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #004085;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+		
+        .home-btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: #004085;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+		
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #004085;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .edit-btn {
+            text-decoration: none;
+            padding: 10px 16px;
+            background-color: #004085;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .no-data {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+     Go to Home Page Button
+         <div class="btn-container">
+        <a href="http://localhost:8092/home" class="home-btn">Go to Home Page</a>
+    
+    </div>
+        
+        <h1>Department List</h1>
+
+        Departments Table
+        <table th:if="${departments != null and !#lists.isEmpty(departments)}">
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dept : ${departments}">
+                    <td th:text="${dept.departmentId}"></td>
+                    <td th:text="${dept.name}"></td>
+                    <td>
+                        <a th:href="@{/department/{id}(id=${dept.departmentId})}" class="edit-btn">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        Message When No Departments are Available
+        <div class="no-data" th:if="${departments == null or #lists.isEmpty(departments)}">
+            <p>No departments available.</p>
+        </div>
+    </div>
+</body>
+</html>
+     -->
+     
+     <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Department</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #eaf4fc; 
+            background-image: url('https://www.istockphoto.com/en/photo/cropped-shot-of-a-female-nurse-hold-her-senior-patients-hand-giving-support-doctor-gm1437830105-478509804');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #eaf4fc, #ffffff);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #004085;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-btn,
+        .insert-btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: #004085;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+        }
+
+        .home-btn {
+            left: 20px; /* Position the Home button at the left */
+        }
+
+        .insert-btn {
+            right: 20px; /* Position the Insert button at the right */
+        }
+
+        .home-btn:hover,
+        .insert-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #004085;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .edit-btn {
+            text-decoration: none;
+            padding: 10px 16px;
+            background-color: #004085;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .no-data {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Go to Home Page Button -->
+        <a href="http://localhost:8092/home" class="home-btn">Go to Home Page</a>
+        
+        <!-- Insert Department Button -->
+<a th:href="@{/addDepartment}" class="insert-btn">Insert Department</a>
+        
+        <h1>Department List</h1>
+
+        <!-- Departments Table -->
+        <table th:if="${departments != null and !#lists.isEmpty(departments)}">
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dept : ${departments}">
+                    <td th:text="${dept.departmentId}"></td>
+                    <td th:text="${dept.name}"></td>
+                    <td>
+                        <a th:href="@{/department/{id}(id=${dept.departmentId})}" class="edit-btn">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Message When No Departments are Available -->
+        <div class="no-data" th:if="${departments == null or #lists.isEmpty(departments)}">
+            <p>No departments available.</p>
+        </div>
+    </div>
+</body>
+</html>
+     

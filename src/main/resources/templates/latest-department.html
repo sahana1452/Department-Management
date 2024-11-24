@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Latest Departments</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eaf4fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            text-align: center;
+            color: #004085;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+   <!--  <div class="container">
+        <h1>Latest Departments</h1>
+        <table th:if="${latestDepartments != null && !#lists.isEmpty(latestDepartments)}">
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dept : ${latestDepartments}">
+                    <td th:text="${dept['departmentId']}"></td>
+                    <td th:text="${dept['name']}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${latestDepartments == null || #lists.isEmpty(latestDepartments)}">
+            <p>No recent records found.</p>
+        </div>
+    </div> -->
+    
+ <!--    <h1>Department Added Successfully!</h1>
+<p>Name: <span th:text="${departmentDto.name}"></span></p>
+<p>Id: <span th:text="${departmentDto.departmentId}"></span></p>
+    
+</body>
+</html>
+ -->
+ 
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Latest Departments</title>
+</head>
+<body>
+    <h1>Latest Departments</h1>
+    <ul>
+        <li th:each="department : ${latestDepartments}">
+            <span th:text="'ID: ' + ${department['departmentId']}"></span> -
+            <span th:text="'Name: ' + ${department['name']}"></span>
+        </li>
+    </ul>
+    <a th:href="@{/getAll}">Back to All Departments</a>
+</body>
+</html>
+ 
